@@ -11,43 +11,47 @@ namespace Tests {
 		[TestMethod]
 		public void Is10CharsLong() {
 			Assert.IsTrue(strings.Is10CharsLong("0123456789"));
+			Assert.IsTrue(strings.Is10CharsLong("\t\t\t\t\t\t\t\t\t\t"));
+
 			Assert.IsFalse(strings.Is10CharsLong(""));
 			Assert.IsFalse(strings.Is10CharsLong("0123456"));
 			Assert.IsFalse(strings.Is10CharsLong("asdxc"));
-			Assert.IsTrue(strings.Is10CharsLong("\t\t\t\t\t\t\t\t\t\t"));
 		}
 
 		[TestMethod]
 		public void IsEvenLength() {
 			Assert.IsTrue(strings.IsEvenLength(""));
-			Assert.IsFalse(strings.IsEvenLength("Hello"));
 			Assert.IsTrue(strings.IsEvenLength("Hello!"));
 			Assert.IsTrue(strings.IsEvenLength("d\t"));
 			Assert.IsTrue(strings.IsEvenLength("\t\t"));
+
+			Assert.IsFalse(strings.IsEvenLength("Hello"));
 			Assert.IsFalse(strings.IsEvenLength("\t"));
 			Assert.IsFalse(strings.IsEvenLength("  "));
 		}
 
 		[TestMethod]
 		public void IsOddLength() {
-			Assert.IsFalse(strings.IsOddLength(""));
 			Assert.IsTrue(strings.IsOddLength("Hello"));
+			Assert.IsTrue(strings.IsOddLength("\t"));
+			Assert.IsTrue(strings.IsOddLength(" "));
+
+			Assert.IsFalse(strings.IsOddLength(""));
 			Assert.IsFalse(strings.IsOddLength("Hello!"));
 			Assert.IsFalse(strings.IsOddLength("d\t"));
 			Assert.IsFalse(strings.IsOddLength("\t\t"));
-			Assert.IsTrue(strings.IsOddLength("\t"));
-			Assert.IsTrue(strings.IsOddLength(" "));
 		}
 
 		[TestMethod]
 		public void StartsWithUppercase() {
 			Assert.IsTrue(strings.StartsWithUppercase("Hello"));
 			Assert.IsTrue(strings.StartsWithUppercase("H"));
+			Assert.IsTrue(strings.StartsWithUppercase("Get it?"));
+			Assert.IsTrue(strings.StartsWithUppercase("OMG"));
+
 			Assert.IsFalse(strings.StartsWithUppercase("hello"));
 			Assert.IsFalse(strings.StartsWithUppercase(""));
 			Assert.IsFalse(strings.StartsWithUppercase("\t"));
-			Assert.IsTrue(strings.StartsWithUppercase("Get it?"));
-			Assert.IsTrue(strings.StartsWithUppercase("OMG"));
 			Assert.IsFalse(strings.StartsWithUppercase("123456"));
 			Assert.IsFalse(strings.StartsWithUppercase("."));
 		}
@@ -80,6 +84,7 @@ namespace Tests {
 			Assert.IsTrue(strings.IsASentence("Hello how are you?"));
 			Assert.IsTrue(strings.IsASentence("I am fine, Thanks!"));
 			Assert.IsTrue(strings.IsASentence("Good day sir."));
+
 			Assert.IsFalse(strings.IsASentence("Jeez"));
 			Assert.IsFalse(strings.IsASentence("this is GREAT!"));
 			Assert.IsFalse(strings.IsASentence(" "));
