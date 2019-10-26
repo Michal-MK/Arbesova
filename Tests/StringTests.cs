@@ -6,7 +6,17 @@ namespace Tests {
 	[TestClass]
 	public class StringTests {
 
-		private Strings strings = new Strings();
+		private readonly Strings strings = new Strings();
+
+		[TestMethod]
+		public void LengthTest() {
+			Assert.IsTrue(strings.Length("") == 0);
+
+			Assert.IsTrue(strings.Length("\t\t") == 2);
+			Assert.IsTrue(strings.Length("abcd") == 4);
+			Assert.IsTrue(strings.Length(" ") == 1);
+			Assert.IsTrue(strings.Length("abcdefghijklmnopqrstuvwxzy") == 26);
+		}
 
 		[TestMethod]
 		public void Is10CharsLong() {

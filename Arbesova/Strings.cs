@@ -3,6 +3,17 @@
 namespace Arbesova {
 	public class Strings {
 
+		// You are not allowed to use any string functions/properties.
+		// Everything here can be implemented with the knowledge you already should have.
+		
+
+		//This method will return the length of a string
+		//Same functionality as "abc".Length property that you are not allowed to use
+		public int Length(string input) {
+			return -1;
+		}
+
+
 		//Check if the string is exactly 10 characters long
 		public bool Is10CharsLong(string str) {
 			return false;
@@ -25,6 +36,7 @@ namespace Arbesova {
 		}
 
 		//Does the string contain exactly 'spaceCount' spaces ?
+		//Think befire you implement this 
 		public bool ContainsXSpaces(int spaceCount, string str) {
 			return false;
 		}
@@ -35,6 +47,8 @@ namespace Arbesova {
 		}
 
 		//Is this string a valid sentence ?
+		//A valid sentence is defined by starting with a capital letter and ending with a valid symbol
+		//valid symbols include ['.', '?', '!']
 		public bool IsASentence(string str) {
 			return false;
 		}
@@ -44,6 +58,7 @@ namespace Arbesova {
 			return "";
 		}
 
+		//Return a string where the last character appears first, next to last appears second and so on...
 		public string ReverseString(string toReverse) {
 			return "";
 		}
