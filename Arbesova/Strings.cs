@@ -5,8 +5,8 @@ namespace Arbesova {
 
 		// You are not allowed to use any string functions/properties.
 		// Only exception is "text".Length
-		// Everything here can be implemented with the knowledge you already should have.
-
+		// Everything here can be implemented with the knowledge you already should have/is said in here.
+		
 
 		//Check if the string is exactly 10 characters long
 		public bool Is10CharsLong(string str) {
@@ -24,7 +24,7 @@ namespace Arbesova {
 			return !IsEvenLength(str);
 		}
 
-		//If the first letter of the string a capital letter ?
+		//Is the first letter of the string a capital letter?
 		public bool StartsWithUppercase(string str) {
 			if (str.Length > 0) {
 				return char.IsUpper(str[0]);
@@ -32,26 +32,35 @@ namespace Arbesova {
 			return false;
 		}
 
-		//Does the string contain exactly 'spaceCount' spaces ?
-		//Think befire you implement this 
+		//Does the string contain exactly 'spaceCount' spaces?
+		//Think before you implement this!
 		public bool ContainsXSpaces(int spaceCount, string str) {
 			return ContainsXCharacters(spaceCount, str, ' ');
 		}
 
 		//Does the string contain exactly 'spaceCount' of 'character' ?
-		public bool ContainsXCharacters(int charCount, string v, char character) {
+		public bool ContainsXCharacters(int charCount, string str, char character) {
 			int counter = 0;
-			for (int i = 0; i < v.Length; i++) {
-				if(v[i] == character) {
+			for (int i = 0; i < str.Length; i++) {
+				if(str[i] == character) {
 					counter++;
 				}
 			}
 			return counter == charCount;
 		}
 
-		//Is this string a valid sentence ?
+		//Is this string a valid sentence?
 		//A valid sentence is defined by starting with a capital letter and ending with a valid symbol
 		//valid symbols include ['.', '?', '!']
+		//The && and || operators work with bool values and return an AND result and a OR result of two values
+		// true && true -> true
+		// true && false -> false
+		// false && true -> false
+		// false && false -> flase
+		// true || true -> true
+		// true || false -> true
+		// false || true -> true
+		// false || false -> false
 		public bool IsASentence(string str) {
 			if(str.Length == 0) {
 				return false;
@@ -64,7 +73,7 @@ namespace Arbesova {
 			return toMirror + ReverseString(toMirror);
 		}
 
-		//Return a string where the last character appears first, next to last appears second and so on...
+		//Return a string where the last character appears first, the next to last appears second and so on...
 		public string ReverseString(string toReverse) {
 			string mirrored = "";
 			for (int i = toReverse.Length - 1; i >= 0; i--) {
