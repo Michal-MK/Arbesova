@@ -37,7 +37,7 @@ namespace Tests {
 
 			Assert.IsFalse(strings.IsEvenLength("Hello"));
 			Assert.IsFalse(strings.IsEvenLength("\t"));
-			Assert.IsFalse(strings.IsEvenLength("  "));
+			Assert.IsFalse(strings.IsEvenLength("   "));
 		}
 
 		[TestMethod]
