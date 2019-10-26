@@ -4,15 +4,9 @@ namespace Arbesova {
 	public class Strings {
 
 		// You are not allowed to use any string functions/properties.
+		// Only exception is "text".Length
 		// Everything here can be implemented with the knowledge you already should have.
 		
-
-		//This method will return the length of a string
-		//Same functionality as "abc".Length property that you are not allowed to use
-		public int Length(string input) {
-			return -1;
-		}
-
 
 		//Check if the string is exactly 10 characters long
 		public bool Is10CharsLong(string str) {
