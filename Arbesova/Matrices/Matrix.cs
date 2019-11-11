@@ -22,7 +22,7 @@ namespace Arbesova {
 			throw new NotImplementedException();
 		}
 
-		public void Multiply(IMatrix other) {
+		public Matrix Multiply(IMatrix other) {
 			throw new NotImplementedException();
 		}
 

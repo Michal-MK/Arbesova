@@ -38,7 +38,7 @@
 		/// <summary>
 		/// Matrix multiplication
 		/// </summary>
-		void Multiply(IMatrix other);
+		Matrix Multiply(IMatrix other);
 
 		/// <summary>
 		/// Converts the matrix to an array representation
