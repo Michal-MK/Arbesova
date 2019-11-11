@@ -44,6 +44,6 @@
 		/// Converts the matrix to an array representation
 		/// </summary>
 		/// <returns></returns>
-		double[,] ToArray();
+		double[][] ToArray();
 	}
 }

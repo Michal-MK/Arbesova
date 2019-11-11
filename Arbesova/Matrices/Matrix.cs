@@ -30,7 +30,7 @@ namespace Arbesova {
 			throw new NotImplementedException();
 		}
 
-		public double[,] ToArray() {
+		public double[][] ToArray() {
 			throw new NotImplementedException();
 		}
 	}

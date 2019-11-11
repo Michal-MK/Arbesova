@@ -14,7 +14,7 @@ namespace Arbesova {
 			throw new NotImplementedException();
 		}
 
-		public static Matrix FromArray(double[,] data) {
+		public static Matrix FromArray(double[][] data) {
 			throw new NotImplementedException();
 		}
 	}
