@@ -33,5 +33,25 @@ namespace Arbesova {
 		public double[][] ToArray() {
 			throw new NotImplementedException();
 		}
+
+		#region Operators
+
+		public static Matrix operator *(Matrix left, double right) {
+			throw new NotImplementedException();
+		}
+
+		public static Matrix operator *(Matrix left, Matrix right) {
+			throw new NotImplementedException();
+		}
+
+		public static Matrix operator +(Matrix left, Matrix right) {
+			throw new NotImplementedException();
+		}
+
+		public static Matrix operator -(Matrix left, Matrix right) {
+			throw new NotImplementedException();
+		}
+
+		#endregion
 	}
 }
