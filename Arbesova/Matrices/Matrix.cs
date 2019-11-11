@@ -14,6 +14,10 @@ namespace Arbesova {
 			throw new NotImplementedException();
 		}
 
+		public void Set(int x, int y, double value) {
+			throw new NotImplementedException();
+		}
+
 		public double[] GetColumn(int index) {
 			throw new NotImplementedException();
 		}
@@ -31,6 +35,10 @@ namespace Arbesova {
 		}
 
 		public double[][] ToArray() {
+			throw new NotImplementedException();
+		}
+
+		public Matrix Transpose() {
 			throw new NotImplementedException();
 		}
 

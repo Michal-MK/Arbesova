@@ -16,6 +16,11 @@
 		double Get(int x, int y);
 
 		/// <summary>
+		/// Sets the value at given indexes
+		/// </summary>
+		void Set(int x, int y, double value);
+
+		/// <summary>
 		/// Gets the row at 'index' of this matrix
 		/// </summary>
 		double[] GetRow(int index);
@@ -41,9 +46,13 @@
 		Matrix Multiply(IMatrix other);
 
 		/// <summary>
+		/// Performs a transposition of this matrix
+		/// </summary>
+		Matrix Transpose();
+
+		/// <summary>
 		/// Converts the matrix to an array representation
 		/// </summary>
-		/// <returns></returns>
 		double[][] ToArray();
 	}
 }
