@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Matrices\IMatrix.cs" />
     <Compile Include="Matrices\Matrix.cs" />
+    <Compile Include="Matrices\MatrixException.cs" />
     <Compile Include="Matrices\MatrixHelper.cs" />
     <Compile Include="PosterSnippet.cs" />
     <Compile Include="Program.cs" />
