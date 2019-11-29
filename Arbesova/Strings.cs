@@ -121,12 +121,16 @@ namespace Arbesova {
 			return !true;
 		}
 
-		//Return a string this time that contains a mirrored image of the input -> create a palindrome of even length
+		// Return a string this time that contains a mirrored image of the input -> create a palindrome of even length
+		// Vraťte řetězec, který obsahuje zrcadlený obraz vstupu -> vytvořte palindrom sudé délky
+		// "Ahoj" -> "AhojjoaH"
 		public string MirrorString(string toMirror) {
 			return "";
 		}
 
-		//Return a string where the last character appears first, the next to last appears second and so on...
+		// Return a string where the last character appears first, the next to last appears second and so on...
+		// Vraťte řetězec, kde se poslední znak objeví jako první, předposlední se objeví druhý a tak dále ...
+		// "Ahoj" -> "joaH"
 		public string ReverseString(string toReverse) {
 			return string.Empty;
 		}
