@@ -12,6 +12,24 @@ namespace Tests {
 			 new double[] { 7, 8, 9 },
 		};
 
+		private readonly double[][] _3X3MatrixDoubled = new double[][] {
+			 new double[] {  2,  4,  6 },
+			 new double[] {  8, 10, 12 },
+			 new double[] { 14, 16, 18 },
+		};
+
+		private readonly double[][] _3X3MatrixTripled = new double[][] {
+			 new double[] {  3,  6,  9 },
+			 new double[] { 12, 15, 18 },
+			 new double[] { 21, 24, 27 },
+		};
+
+		private readonly double[][] _3X3ZeroMatrix = new double[][] {
+			 new double[] { 0, 0, 0 },
+			 new double[] { 0, 0, 0 },
+			 new double[] { 0, 0, 0 },
+		};
+
 
 		private readonly double[][] _3X5Matrix = new double[][] {
 			 new double[] {  1,  2,  3 },
@@ -37,9 +55,9 @@ namespace Tests {
 
 
 		private readonly double[][] _3X3UnitMatrix = new double[][] {
-			 new double[] {  1,  0,  0 },
-			 new double[] {  0,  1,  0 },
-			 new double[] {  0,  0,  1 },
+			 new double[] { 1, 0, 0 },
+			 new double[] { 0, 1, 0 },
+			 new double[] { 0, 0, 1 },
 		};
 
 
@@ -55,15 +73,15 @@ namespace Tests {
 
 
 		private readonly double[][] _3X3DoublingMatrix = new double[][] {
-			 new double[] {  2,  0,  0 },
-			 new double[] {  0,  2,  0 },
-			 new double[] {  0,  0,  2 },
+			 new double[] { 2, 0, 0 },
+			 new double[] { 0, 2, 0 },
+			 new double[] { 0, 0, 2 },
 		};
 
 		private readonly double[][] _3X3TriplingMatrix = new double[][] {
-			 new double[] {  3,  0,  0 },
-			 new double[] {  0,  3,  0 },
-			 new double[] {  0,  0,  3 },
+			 new double[] { 3, 0, 0 },
+			 new double[] { 0, 3, 0 },
+			 new double[] { 0, 0, 3 },
 		};
 
 
@@ -139,8 +157,63 @@ namespace Tests {
 			Assert.ThrowsException<MatrixException>(() => m.GetColumn(10));
 			Assert.ThrowsException<MatrixException>(() => m.GetRow(10));
 			Assert.ThrowsException<MatrixException>(() => m.GetRow(-5));
-
 		}
+
+		[TestMethod]
+		public void AddMatrices() {
+			Matrix m3x3_1 = MatrixHelper.FromArray(_3X3Matrix);
+			Matrix m3x3_2 = MatrixHelper.FromArray(_3X3Matrix);
+			Matrix m1x3 = MatrixHelper.FromArray(_1X3UnitVector);
+			Matrix m1x1 = MatrixHelper.FromArray(_1X1Matrix);
+
+			m3x3_1.Add(m3x3_1);
+
+			m3x3_2.Add(m3x3_1);
+
+			m1x1.Add(m1x1);
+			m1x1.Add(m1x1);
+			m1x1.Add(m1x1);
+			m1x1.Add(m1x1);
+
+			Assert.AreEqual(m1x1, MatrixHelper.FromArray(new double[1][] { new[] { 16d } }));
+
+			Assert.AreEqual(_3X3MatrixDoubled, m3x3_1);
+			Assert.AreEqual(_3X3MatrixTripled, m3x3_2);
+
+			Assert.ThrowsException<MatrixException>(() => m1x3.Add(m3x3_1));
+			Assert.ThrowsException<MatrixException>(() => m3x3_2.Add(m1x3));
+			Assert.ThrowsException<MatrixException>(() => m3x3_2.Add(MatrixHelper.FromArray(_1X1Matrix)));
+		}
+
+		[TestMethod]
+		public void SubtractMatrices() {
+			Matrix m3x3_1 = MatrixHelper.FromArray(_3X3Matrix);
+			Matrix m3x3_2 = MatrixHelper.FromArray(_3X3ZeroMatrix);
+
+			m3x3_1.Subtract(m3x3_1);
+
+			Assert.AreEqual(m3x3_2, m3x3_1);
+			//More tests needed
+		}
+
+		[TestMethod]
+		public void TransposeMatrices() {
+			Matrix m1x1 = MatrixHelper.FromArray(_1X1Matrix);
+			Matrix m3x3_unit = MatrixHelper.FromArray(_3X3UnitMatrix);
+			Matrix m1x3_unit = MatrixHelper.FromArray(_1X3UnitVector);
+			Matrix m3x1_unit = MatrixHelper.FromArray(_3X1UnitVector);
+			Matrix m3x5_unit = MatrixHelper.FromArray(_3X5Matrix);
+
+
+			Assert.AreEqual(m3x5_unit, m3x5_unit.Transpose().Transpose());
+
+			Assert.AreEqual(m3x1_unit, m1x3_unit.Transpose());
+
+			Assert.AreEqual(m1x1, m1x1.Transpose());
+			Assert.AreEqual(m3x3_unit, m3x3_unit.Transpose());
+		}
+
+
 		private bool ArrayEquals(double[] one, double[] two) {
 			for (int i = 0; i < one.Length; i++) {
 				if (one[i] != two[i]) return false;

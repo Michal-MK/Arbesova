@@ -2,6 +2,10 @@
 
 namespace Arbesova {
 	public class Matrix : IMatrix {
+		//					^^^
+		// Komentáře k jednotlivým funkcím/vlastnostem najdete v IMatrix
+
+
 		public int Width => throw new NotImplementedException();
 
 		public int Height => throw new NotImplementedException();
@@ -43,6 +47,9 @@ namespace Arbesova {
 		}
 
 		#region Operators
+
+		// Tato sekce nám umožní definovat operace nad maticemi
+		// můžeme psát m1 += m2; namísto m1.Add(m2); | kde m1 a m2 jsou matice
 
 		public static Matrix operator *(Matrix left, double right) {
 			throw new NotImplementedException();
