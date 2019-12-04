@@ -46,7 +46,11 @@
 		/// <summary>
 		/// Vrať honotu z této matice na zadaných souřadnicích
 		/// [0,0] je levý horní roh
+		/// <para>
+		/// Když jsou spořadnice mimo rozsah vyhoď vyjímku
+		/// </para>
 		/// </summary>
+		/// <exception cref="MatrixException"></exception>
 		double Get(int x, int y);
 
 		/// <summary>
@@ -57,29 +61,49 @@
 
 		/// <summary>
 		/// Vrať 'index'-tý řádek této matice
+		/// <para>
+		/// Když jsou spořadnice mimo rozsah vyhoď vyjímku
+		/// </para>
 		/// </summary>
+		/// <exception cref="MatrixException"></exception>
 		double[] GetRow(int index);
 
 		/// <summary>
 		/// Vrať 'index'-ý sloupec této matice
+		/// <para>
+		/// Když jsou spořadnice mimo rozsah vyhoď vyjímku
+		/// </para>
 		/// </summary>
+		/// <exception cref="MatrixException"></exception>
 		double[] GetColumn(int index);
 
 		/// <summary>
 		/// Přičti matici k této matici
 		/// Sčítání probíhá tak, že sečteme prvky na stejných souřadnicích
+		/// <para>
+		/// Když matice mají jinou velikost vyhoď vyjímku
+		/// </para>
 		/// </summary>
+		/// <exception cref="MatrixException"></exception>		
 		void Add(IMatrix other);
 
 		/// <summary>
 		/// Odečti matici od této matici
 		/// Odčítání probíhá tak, že odečteme prvky na stejných souřadnicích
+		/// <para>
+		/// Když matice mají jinou velikost vyhoď vyjímku
+		/// </para>
 		/// </summary>
+		/// <exception cref="MatrixException"></exception>
 		void Subtract(IMatrix other);
 
 		/// <summary>
-		/// Vrať novou matici kterou získáme vynásobením této matice maticí 'other'
+		/// Vrať novou matici, kterou získáme vynásobením této matice maticí 'other', algoritmus pro násobení matic je ilustrován nahoře
+		/// <para>
+		/// Když matice nesplňují podmínku násobení (this.Width == other.Height) vyhoď vyjímku
+		/// </para>
 		/// </summary>
+		/// <exception cref="MatrixException"></exception>
 		Matrix Multiply(IMatrix other);
 
 		/// <summary>
