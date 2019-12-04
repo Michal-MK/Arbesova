@@ -155,17 +155,17 @@ namespace Tests {
 			double[] col4 = new double[] { 17, 19, 21, 23, 25 };
 
 
-			Assert.IsTrue(ArrayEquals(row0, M3x3.GetRow(0)));
-			Assert.IsTrue(ArrayEquals(row1, M3x3.GetRow(1)));
-			Assert.IsTrue(ArrayEquals(row2, M3x3.GetRow(2)));
-			Assert.IsTrue(ArrayEquals(row3, M3x3.GetRow(3)));
-			Assert.IsTrue(ArrayEquals(row4, M3x3.GetRow(4)));
+			Assert.IsTrue(ArrayEquals(row0, M5x5.GetRow(0)));
+			Assert.IsTrue(ArrayEquals(row1, M5x5.GetRow(1)));
+			Assert.IsTrue(ArrayEquals(row2, M5x5.GetRow(2)));
+			Assert.IsTrue(ArrayEquals(row3, M5x5.GetRow(3)));
+			Assert.IsTrue(ArrayEquals(row4, M5x5.GetRow(4)));
 
-			Assert.IsTrue(ArrayEquals(col0, M3x3.GetColumn(0)));
-			Assert.IsTrue(ArrayEquals(col1, M3x3.GetColumn(1)));
-			Assert.IsTrue(ArrayEquals(col2, M3x3.GetColumn(2)));
-			Assert.IsTrue(ArrayEquals(col3, M3x3.GetColumn(3)));
-			Assert.IsTrue(ArrayEquals(col4, M3x3.GetColumn(4)));
+			Assert.IsTrue(ArrayEquals(col0, M5x5.GetColumn(0)));
+			Assert.IsTrue(ArrayEquals(col1, M5x5.GetColumn(1)));
+			Assert.IsTrue(ArrayEquals(col2, M5x5.GetColumn(2)));
+			Assert.IsTrue(ArrayEquals(col3, M5x5.GetColumn(3)));
+			Assert.IsTrue(ArrayEquals(col4, M5x5.GetColumn(4)));
 
 			Assert.ThrowsException<MatrixException>(() => M5x5.GetColumn(-1));
 			Assert.ThrowsException<MatrixException>(() => M5x5.GetColumn(10));
@@ -194,12 +194,12 @@ namespace Tests {
 			m3x3_3.Add(M3x3Zero);
 			m3x3_3.Add(M3x3Zero);
 
-			Assert.AreEqual(M3x3, m3x3_3);
+			Assert.IsTrue(MatrixEqual(M3x3, m3x3_3));
 
-			Assert.AreEqual(m1x1, MatrixHelper.FromArray(new double[1][] { new[] { 16d } }));
+			Assert.IsTrue(MatrixEqual(m1x1, MatrixHelper.FromArray(new double[1][] { new[] { 16d } })));
 
-			Assert.AreEqual(_3X3MatrixDoubled, m3x3_1);
-			Assert.AreEqual(_3X3MatrixTripled, m3x3_2);
+			Assert.IsTrue(MatrixEqual(M3x3Doubled, m3x3_1));
+			Assert.IsTrue(MatrixEqual(M3x3Tripled, m3x3_2));
 
 			Assert.ThrowsException<MatrixException>(() => m1x3.Add(m3x3_1));
 			Assert.ThrowsException<MatrixException>(() => m3x3_2.Add(m1x3));
@@ -213,7 +213,7 @@ namespace Tests {
 
 			m3x3_1.Subtract(m3x3_1);
 
-			Assert.AreEqual(m3x3_2, m3x3_1);
+			Assert.IsTrue(MatrixEqual(m3x3_2, m3x3_1));
 			//More tests needed
 		}
 
@@ -226,28 +226,28 @@ namespace Tests {
 			Matrix m3x5_unit = MatrixHelper.FromArray(_3X5Matrix);
 
 
-			Assert.AreEqual(m3x5_unit, m3x5_unit.Transpose().Transpose());
+			Assert.IsTrue(MatrixEqual(m3x5_unit, m3x5_unit.Transpose().Transpose()));
 
-			Assert.AreEqual(m3x1_unit, m1x3_unit.Transpose());
+			Assert.IsTrue(MatrixEqual(m3x1_unit, m1x3_unit.Transpose()));
 
-			Assert.AreEqual(m1x1, m1x1.Transpose());
-			Assert.AreEqual(m3x3_unit, m3x3_unit.Transpose());
+			Assert.IsTrue(MatrixEqual(m1x1, m1x1.Transpose()));
+			Assert.IsTrue(MatrixEqual(m3x3_unit, m3x3_unit.Transpose()));
 
-			Assert.AreNotEqual(M3x3Double, m3x1_unit.Transpose());
-			Assert.AreNotEqual(M1x3, M5x5.Transpose());
+			Assert.IsFalse(MatrixEqual(M3x3Double, m3x1_unit.Transpose()));
+			Assert.IsFalse(MatrixEqual(M1x3, M5x5.Transpose()));
 		}
 
 		[TestMethod]
 		public void MultiplyMatrices() {
 			Matrix m = M1x1.Multiply(M1x1);
-			Matrix m2 = M3x1.Multiply(M3x1);
+			Matrix m2 = M3x1.Multiply(M1x3);
 			Matrix m3 = M3x3.Multiply(M3x3Double);
 			Matrix m4 = M3x3.Multiply(M3x3Triple);
 
-			Assert.AreEqual(m, M1x1);
-			Assert.AreEqual(m2, M3x3One);
-			Assert.AreEqual(m3, M3x3Doubled);
-			Assert.AreEqual(m4, M3x3Tripled);
+			Assert.IsTrue(MatrixEqual(m, M1x1));
+			Assert.IsTrue(MatrixEqual(m2, M3x3One));
+			Assert.IsTrue(MatrixEqual(m3, M3x3Doubled));
+			Assert.IsTrue(MatrixEqual(m4, M3x3Tripled));
 
 			Assert.ThrowsException<MatrixException>(() => M1x3.Multiply(M1x3));
 			Assert.ThrowsException<MatrixException>(() => M1x1.Multiply(M3x3));
@@ -258,6 +258,23 @@ namespace Tests {
 		private bool ArrayEquals(double[] one, double[] two) {
 			for (int i = 0; i < one.Length; i++) {
 				if (one[i] != two[i]) return false;
+			}
+			return true;
+		}
+
+		private bool MatrixEqual(Matrix m1, Matrix m2) {
+			bool baseEq = m1.Width == m2.Width && m1.Height == m2.Height;
+			if (!baseEq) {
+				return false;
+			}
+			for (int i = 0; i < m1.Width; i++) {
+				double[] m1d = m1.GetColumn(i);
+				double[] m2d = m2.GetColumn(i);
+
+				bool res = ArrayEquals(m1d, m2d);
+				if (!res) {
+					return false;
+				}
 			}
 			return true;
 		}
